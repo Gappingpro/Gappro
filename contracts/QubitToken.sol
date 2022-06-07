@@ -62,3 +62,4 @@ contract QubitToken is BEP20Upgradeable {
         return _minters[account];
     }
 }
+
