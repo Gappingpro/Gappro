@@ -238,4 +238,3 @@ contract Qore is QoreAdmin {
     }
 }
 
-
