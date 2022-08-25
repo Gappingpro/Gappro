@@ -219,15 +219,4 @@ contract PriceCalculatorBSC is IPriceCalculator, OwnableUpgradeable {
         valueInUSD = valueInBNB.mul(priceOfBNB()).div(1e18);
     }
 
-    function _oracleValueOf(address asset, uint amount) private view returns (uint valueInBNB, uint valueInUSD) {
-        valueInUSD = 0;
-        uint assetDecimals = asset == address(0) ? 1e18 : 10 ** uint(IBEP20(asset).decimals());
-        if (tokenFeeds[asset] != address(0)) {
-            (, int price, , ,) = AggregatorV3Interface(tokenFeeds[asset]).latestRoundData();
-            valueInUSD = uint(price).mul(1e10).mul(amount).div(assetDecimals);
-        } else if (references[asset].lastUpdated > block.timestamp.sub(1 days)) {
-            valueInUSD = references[asset].lastData.mul(amount).div(assetDecimals);
-        }
-        valueInBNB = valueInUSD.mul(1e18).div(priceOfBNB());
-    }
-}
+
