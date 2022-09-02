@@ -392,3 +392,4 @@ contract QDistributor is IQDistributor, WhitelistUpgradeable, ReentrancyGuardUpg
         userInfo.boostedBorrow = boostedBorrow;
     }
 }
+
